@@ -1,0 +1,33 @@
+services:
+  blogger_api:
+    build: ./blogger_api
+    container_name: blogger_api
+    ports:
+      - "8000:8000"
+    environment:
+    # https://stackoverflow.com/questions/59812009/what-is-the-use-of-pythonunbuffered-in-docker-file
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      - blogger_db
+    volumes:
+      - type: bind
+        source: ./blogger_api
+        target: /blogger_api
+    restart: on-failure
+  blogger_db:
+    image: postgres:15.3-bullseye
+    container_name: blogger_db
+    environment:
+      - POSTGRES_DB=blogger_db
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - PGUSER=user
+    volumes:
+      - type: volume
+        source: pg_db
+        target: /db
+    ports:
+      - "5432:5432"
+
+volumes:
+  pg_db:
