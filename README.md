@@ -7,6 +7,7 @@
 - `Flask`
 - `Flask-Migrate`
 - `Flask-SQLAlchemy`
+- `SQLAlchemy`
 - `Flask-CORS`
 - `PyJWT`
 - `Flassger`
