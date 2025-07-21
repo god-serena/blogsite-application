@@ -7,16 +7,17 @@ from flask import Blueprint, request, make_response
 from src.db import db
 from auth import auth_required
 from models.blog import Blog
-from models.user import UserProfile
+from models.user import UserProfile, Author
 from api.utils import instance_to_dict
 from sqlalchemy import select
+import traceback
 
 blog_route = Blueprint("blog_route", __name__)
 
 
-@blog_route.route("/")
+@blog_route.route("")
 def get_blogs():
-    query_size = 5
+    query_size = 20
     title = request.args.get("title")
     head_index = request.args.get("top")
 
@@ -80,7 +81,7 @@ def get_blog(id):
         )
 
 @blog_route.route("/create", methods=["POST"])
-@auth_required
+#@auth_required
 def create_blog():
     payload = request.json
     try:
@@ -93,10 +94,20 @@ def create_blog():
                 { "message": "Blog already exists." },
                 400
             )
-        author_id = request.user.author.id
+        """
+        Get random author for now a
+        authentication is not  fully setup in the
+        frontend hence the need to disabled authentication
+        decorator
+        """
+        author = db.session.execute(
+            select(Author)
+        ).scalars().first()
+
+        #author_id = request.user.author.id
         new_blog = Blog(
             **payload,
-            author_id=author_id
+            author_id=author.id
         )
 
         db.session.add(new_blog)
@@ -119,7 +130,7 @@ def create_blog():
 
 
 @blog_route.route("/update/<int:id>", methods=["PATCH"])
-@auth_required
+#@auth_required
 def update_blog(id):
     payload = request.json
     try:
