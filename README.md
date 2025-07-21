@@ -6,6 +6,7 @@
 
 - `Next.js`
 - `TailwindCSS`
+- `Quill.js`
 - `Flask`
 - `Flask-Migrate`
 - `Flask-SQLAlchemy`
