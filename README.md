@@ -19,7 +19,7 @@
 2. Cached frequently accessed records.
 3. Maximizing SSR capability of `Next.js`.
 4. Proper documentation for endpoint resources with `Flassger`.
-5. Improve docker-image sizes.
+5. Reduce docker-images sizes.
 6. Unit tests.
 
 ##
