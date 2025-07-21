@@ -1,12 +1,10 @@
 # https://www.youtube.com/watch?v=OLsVfmjEpSc
 from functools import wraps
-from flask import request
+from flask import request, current_app, make_response
 from models.user import UserProfile
-from flask import current_app, make_response
 import jwt
 from datetime import datetime, timezone, timedelta
 from sqlalchemy.orm.exc import NoResultFound
-
 
 def auth_required(func):
     @wraps(func)
@@ -28,12 +26,7 @@ def auth_required(func):
                 {"message": str(e)},
                 404
             )
-        except jwt.ExpiredSignatureError as e:
-            return make_response(
-                {"message": str(e)},
-                403
-            )
-        except jwt.InvalidTokenError as e:
+        except jwt.ExpiredSignatureError or jwt.InvalidTokenError as e:
             return make_response(
                 {"message": str(e)},
                 403
