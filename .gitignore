@@ -1,3 +1,8 @@
 *.pyc
 .venv
 settings.json
+blogger/node_modules
+blogger/coverage
+blogger/build
+blogger/*.next
+.DS_Store
