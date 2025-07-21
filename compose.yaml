@@ -1,4 +1,15 @@
 services:
+  blogger:
+    build: ./blogger
+    container_name: blogger
+    ports:
+      - "4000:4000"
+    volumes:
+      - type: bind
+        source: ./blogger
+        target: /blogger
+      - /blogger/node_modules
+    restart: on-failure:5
   blogger_api:
     build: ./blogger_api
     container_name: blogger_api
@@ -13,7 +24,7 @@ services:
       - type: bind
         source: ./blogger_api
         target: /blogger_api
-    restart: on-failure
+    restart: on-failure:5
   blogger_db:
     image: postgres:15.3-bullseye
     container_name: blogger_db
