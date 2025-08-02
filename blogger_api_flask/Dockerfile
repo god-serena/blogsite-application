@@ -6,7 +6,6 @@ COPY requirements.txt /blogger_api
 
 RUN pip install -r requirements.txt
 
-COPY . /blogger-api
 
 EXPOSE 8000
 
