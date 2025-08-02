@@ -1,6 +1,7 @@
 <img width="400" height="100" alt="logo" src="https://github.com/user-attachments/assets/cbfd7737-bfed-4169-a05e-0ba044668246" />
 
-# BLOGSITE APPLICATION
+# BLOGSITE APPLICATION 
+## DISCONTINUED PROJECT. ACTIVE ONE IS [HERE](https://github.com/god-serena/blogger)
 
 ### This is an incomplete blogsite application developed with the following tools:
 
