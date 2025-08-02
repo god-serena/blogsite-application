@@ -10,21 +10,22 @@ services:
         target: /blogger
       - /blogger/node_modules
     restart: on-failure:5
-  blogger_api:
-    build: ./blogger_api
-    container_name: blogger_api
-    ports:
-      - "8000:8000"
-    environment:
-    # https://stackoverflow.com/questions/59812009/what-is-the-use-of-pythonunbuffered-in-docker-file
-      - PYTHONUNBUFFERED=1
-    depends_on:
-      - blogger_db
-    volumes:
-      - type: bind
-        source: ./blogger_api
-        target: /blogger_api
-    restart: on-failure:5
+  # Discontinued
+  #blogger_api:
+  #  build: ./blogger_api_flask
+  #  container_name: blogger_api_flask
+  #  ports:
+  #    - "8000:8000"
+  #  environment:
+  #  # https://stackoverflow.com/questions/59812009/what-is-the-use-of-pythonunbuffered-in-docker-file
+  #    - PYTHONUNBUFFERED=1
+  #  depends_on:
+  #    - blogger_db
+  #  volumes:
+  #    - type: bind
+  #      source: ./blogger_api
+  #      target: /blogger_api
+  #  restart: on-failure:5
   blogger_db:
     image: postgres:15.3-bullseye
     container_name: blogger_db
